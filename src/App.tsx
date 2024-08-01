@@ -1,26 +1,129 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import React, { useState, useEffect, useRef } from 'react';
+import Header from "./Header";
+import Footer from "./Footer";
+import topImages from "./TopImages";
+import images from "./Images";
+import links from "./Links";
 
-function App() {
+const App: React.FC = () => {
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [isTransitioning, setIsTransitioning] = useState<boolean>(true);
+  const [activeSection, setActiveSection] = useState<string>('top');
+  const slideRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentIndex(prevIndex => (prevIndex + 1) % (topImages.length + 1));
+      setIsTransitioning(true);
+    }, 3000); // 3秒ごとに画像を切り替え
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
+    if (currentIndex === topImages.length) {
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentIndex(0);
+      }, 1000); // アニメーションの時間に合わせて設定
+    }
+  }, [currentIndex]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (slideRef.current) {
+        slideRef.current.style.width = `${100 * (topImages.length + 1)}%`;
+      }
+    };
+    
+    window.addEventListener('resize', handleResize);
+    handleResize(); // 初回レンダリング時に幅を設定
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const slideStyle: React.CSSProperties = {
+    transform: `translateX(-${currentIndex * (100 / (topImages.length + 1))}%)`,
+    transition: isTransitioning ? 'transform 1s ease-in-out' : 'none',
+    width: `${100 * (topImages.length + 1)}%`
+  };
+
+  const handleMenuClick = (section: string) => {
+    setActiveSection(section);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header onMenuClick={handleMenuClick} />
+
+      <div className="top" style={{ display: activeSection === 'top' ? 'block' : 'none' }}>
+        <div className="slideshow">
+          <div className="slide" style={slideStyle} ref={slideRef}>
+            {topImages.concat(topImages[0]).map((src: string, index: number) => (
+              <img key={index} src={src} alt={`うどん${index + 1}`} />
+            ))}
+          </div>
+        </div>
+        
+        <div className="description">
+          <h2>おしるこうどん屋について</h2>
+          <p>おしるこうどん屋ではVRChat向けのアバター用衣装の制作、販売を行っています。</p>
+        </div>
+
+        <div className="container">
+          <div className="box">
+            <img src="img/items/092.png" width="300px" height="300px" alt="最新衣装" />
+            <h2>【無料】ティコ・ポプリ用 和装バニー</h2>
+            <p>和装とバニーを組み合わせた奇妙な衣装です。</p>
+          </div>
+          <div className="box">
+            <img src="img/items/089.png" width="300px" height="300px" alt="最新衣装" />
+            <h2>【無料】ティコ・ポプリ用 浴衣2024</h2>
+            <p>ティコちゃんポプリちゃん用の浴衣です。</p>
+          </div>
+          <div className="box">
+            <img src="img/items/086.png" width="300px" height="300px" alt="最新衣装" />
+            <h2>【無料】ティコ・ポプリ用 ミニパレオ付水着</h2>
+            <p>ミニパレオ付きの水着衣装です。</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="menu-list" style={{ display: activeSection === 'menu' ? 'block' : 'none' }}>
+        <main className="menu-page">
+          <div className="thumbnail-container">
+            {images.map((src: string, index: number) => (
+              <div key={index} className="thumbnail-box">
+                <a href={links[index]} target="_blank" rel="noopener noreferrer">
+                  <img src={src} alt={`サムネイル${index + 1}`} />
+                </a>
+              </div>
+            ))}
+          </div>
+        </main>
+      </div>
+
+      <div className="form" style={{ display: activeSection === 'form' ? 'block' : 'none' }}>
+        <div className="form-style">
+          <iframe 
+            src="https://docs.google.com/forms/d/e/1FAIpQLSfCQWeuc7pFd5slbkH3O7mj6yYb6UsIxSFOs2qMUF4HK_zH0A/viewform?embedded=true" 
+            width="640" 
+            height="452"
+            frameBorder={0}
+            marginHeight={0} 
+            marginWidth={0}
+            title="お問い合わせフォーム"
+          >読み込んでいます…
+          </iframe>
+        </div>
+      </div>
+
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;

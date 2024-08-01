@@ -1,6 +1,6 @@
 {
+  "homepage": "https://oshirukoudon.github.io/oshirukoudon-shop/",
   "name": "oshirukoudon-shop",
-  "homepage": "https://oshirukoudon.github.io/oshirukoudon-shop",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
