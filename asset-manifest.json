@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/oshirukoudon-shop/static/css/main.b1a7a005.css",
-    "main.js": "/oshirukoudon-shop/static/js/main.1f22a688.js",
+    "main.css": "/oshirukoudon-shop/static/css/main.b55a69b4.css",
+    "main.js": "/oshirukoudon-shop/static/js/main.6e1d7674.js",
     "static/js/453.7d2d7f58.chunk.js": "/oshirukoudon-shop/static/js/453.7d2d7f58.chunk.js",
     "index.html": "/oshirukoudon-shop/index.html",
-    "main.b1a7a005.css.map": "/oshirukoudon-shop/static/css/main.b1a7a005.css.map",
-    "main.1f22a688.js.map": "/oshirukoudon-shop/static/js/main.1f22a688.js.map",
+    "main.b55a69b4.css.map": "/oshirukoudon-shop/static/css/main.b55a69b4.css.map",
+    "main.6e1d7674.js.map": "/oshirukoudon-shop/static/js/main.6e1d7674.js.map",
     "453.7d2d7f58.chunk.js.map": "/oshirukoudon-shop/static/js/453.7d2d7f58.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b1a7a005.css",
-    "static/js/main.1f22a688.js"
+    "static/css/main.b55a69b4.css",
+    "static/js/main.6e1d7674.js"
   ]
 }
