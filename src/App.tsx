@@ -3,13 +3,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import Header from "./Header";
 import Footer from "./Footer";
 import topImages from "./TopImages";
-import images from "./Images";
-import links from "./Links";
+import items from "./items";
 
 const App: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isTransitioning, setIsTransitioning] = useState<boolean>(true);
   const [activeSection, setActiveSection] = useState<string>('top');
+  const [selectedType, setSelectedType] = useState<string>('all');
   const slideRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -55,6 +55,12 @@ const App: React.FC = () => {
     setActiveSection(section);
   };
 
+  const handleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedType(event.target.value);
+  };
+
+  const filteredItems = selectedType === 'all' ? items : items.filter(item => item.type === selectedType);
+
   return (
     <div className="App">
       <Header onMenuClick={handleMenuClick} />
@@ -71,34 +77,65 @@ const App: React.FC = () => {
         <div className="description">
           <h2>おしるこうどん屋について</h2>
           <p>おしるこうどん屋ではVRChat向けのアバター用衣装の制作、販売を行っています。</p>
+          <a href="https://oshirukoudon.booth.pm/" target="_blank" rel="noopener noreferrer">BOOTHのショップへ移動</a>
         </div>
 
-        <div className="container">
-          <div className="box">
-            <img src="img/items/092.png" width="300px" height="300px" alt="最新衣装" />
-            <h2>【無料】ティコ・ポプリ用 和装バニー</h2>
-            <p>和装とバニーを組み合わせた奇妙な衣装です。</p>
+        <div>
+          <div className="new-items">
+            <h2>新着商品</h2>
           </div>
-          <div className="box">
-            <img src="img/items/089.png" width="300px" height="300px" alt="最新衣装" />
-            <h2>【無料】ティコ・ポプリ用 浴衣2024</h2>
-            <p>ティコちゃんポプリちゃん用の浴衣です。</p>
-          </div>
-          <div className="box">
-            <img src="img/items/086.png" width="300px" height="300px" alt="最新衣装" />
-            <h2>【無料】ティコ・ポプリ用 ミニパレオ付水着</h2>
-            <p>ミニパレオ付きの水着衣装です。</p>
+
+          <div className="container">
+            <a href={items[91].link} target="_blank" rel="noopener noreferrer">
+              <div className="box">
+                <img src="img/items/092.png" width="300px" height="300px" alt="最新衣装" />
+                <h2>【無料】ティコ・ポプリ用 和装バニー</h2>
+                <p>和装とバニーを組み合わせた奇妙な衣装です。</p>
+              </div>
+            </a>
+            <a href={items[88].link} target="_blank" rel="noopener noreferrer">
+              <div className="box">
+                <img src="img/items/089.png" width="300px" height="300px" alt="最新衣装" />
+                <h2>【無料】ティコ・ポプリ用 浴衣2024</h2>
+                <p>ティコちゃんポプリちゃん用の浴衣です。</p>
+              </div>
+            </a>
+            <a href={items[85].link} target="_blank" rel="noopener noreferrer">
+              <div className="box">
+                <img src="img/items/086.png" width="300px" height="300px" alt="最新衣装" />
+                <h2>【無料】ティコ・ポプリ用 ミニパレオ付水着</h2>
+                <p>ミニパレオ付きの水着衣装です。</p>
+              </div>
+            </a>
           </div>
         </div>
       </div>
 
       <div className="menu-list" style={{ display: activeSection === 'menu' ? 'block' : 'none' }}>
+
+        <div className="description">
+          <h2>商品一覧</h2>
+          <p>クリックするとBOOTHの商品ページを開きます</p>
+        </div>
+
+        <div className="menu-top">
+          <select onChange={handleTypeChange} value={selectedType} className="menu-combo">
+            <option value="all">All</option>
+            <option value="tycho">ティコ</option>
+            <option value="marimo">まりも</option>
+            <option value="kaya">伊奈波かや</option>
+            <option value="raine">御咲ライネ</option>
+            <option value="amary">アメリー</option>
+            <option value="items">アイテム</option>
+          </select>
+        </div>
         <main className="menu-page">
+
           <div className="thumbnail-container">
-            {images.map((src: string, index: number) => (
+            {filteredItems.slice().reverse().map((item, index) => (
               <div key={index} className="thumbnail-box">
-                <a href={links[index]} target="_blank" rel="noopener noreferrer">
-                  <img src={src} alt={`サムネイル${index + 1}`} />
+                <a href={item.link} target="_blank" rel="noopener noreferrer">
+                  <img src={item.src} alt={`サムネイル${filteredItems.length - index}`} />
                 </a>
               </div>
             ))}

@@ -19,7 +19,9 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
 
   return (
     <header>
-      <h1>おしるこうどん屋</h1>
+      <a href="#" onClick={() => closeMenu('top')}>
+        <h1>おしるこうどん屋</h1>
+      </a>
       <div className="menu-icon" onClick={toggleMenu}>
         <i className="material-icons">menu</i>
       </div>
