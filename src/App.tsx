@@ -127,6 +127,8 @@ const App: React.FC = () => {
             <option value="raine">御咲ライネ</option>
             <option value="amary">アメリー</option>
             <option value="items">アイテム</option>
+            <option value="mame">まめふれんず</option>
+            <option value="multi">複数</option>
           </select>
         </div>
         <main className="menu-page">
