@@ -95,6 +95,14 @@ const items = [
   { src: "img/items/092.png", link: "https://oshirukoudon.booth.pm/items/5949566", type: "tycho" },
   { src: "img/items/093.png", link: "https://oshirukoudon.booth.pm/items/5955962", type: "raine" },
   { src: "img/items/094.png", link: "https://oshirukoudon.booth.pm/items/5956004", type: "tycho" },
+  { src: "img/items/095.png", link: "https://oshirukoudon.booth.pm/items/5980512", type: "tycho" },
+  { src: "img/items/096.png", link: "https://oshirukoudon.booth.pm/items/5993700", type: "kaya" },
+  { src: "img/items/097.png", link: "https://oshirukoudon.booth.pm/items/5996797", type: "raine" },
+  { src: "img/items/098.png", link: "https://oshirukoudon.booth.pm/items/6008089", type: "tycho" },
+  { src: "img/items/099.png", link: "https://oshirukoudon.booth.pm/items/6016850", type: "kaya" },
+  { src: "img/items/100.png", link: "https://oshirukoudon.booth.pm/items/6030335", type: "tycho" },
+  { src: "img/items/101.png", link: "https://oshirukoudon.booth.pm/items/6038126", type: "kaya" },
+  { src: "img/items/102.png", link: "https://oshirukoudon.booth.pm/items/6039595", type: "raine" },
 ];
 
 export default items;

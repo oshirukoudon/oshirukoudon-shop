@@ -93,5 +93,14 @@ const links = [
   "https://oshirukoudon.booth.pm/items/5938066",
   "https://oshirukoudon.booth.pm/items/5949566",
   "https://oshirukoudon.booth.pm/items/5955962",
+  "https://oshirukoudon.booth.pm/items/5956004",
+  "https://oshirukoudon.booth.pm/items/5980512",
+  "https://oshirukoudon.booth.pm/items/5993700",
+  "https://oshirukoudon.booth.pm/items/5996797",
+  "https://oshirukoudon.booth.pm/items/6008089",
+  "https://oshirukoudon.booth.pm/items/6016850",
+  "https://oshirukoudon.booth.pm/items/6030335",
+  "https://oshirukoudon.booth.pm/items/6038126",
+  "https://oshirukoudon.booth.pm/items/6039595",
 ];
 export default links;
